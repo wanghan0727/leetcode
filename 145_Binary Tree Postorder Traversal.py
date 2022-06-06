@@ -5,12 +5,13 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         res = []
-        if root is None:
+        if  root is None:
             return []
+
+        res.extend(self.postorderTraversal(root.left))
+        res.extend(self.postorderTraversal(root.right))
         res.append(root.val)
-        res.extend(self.preorderTraversal(root.left))
-        res.extend(self.preorderTraversal(root.right))
-        
-        return res                
+
+        return res
